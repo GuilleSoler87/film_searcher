@@ -5,7 +5,8 @@ const searchButton = document.getElementById('searchButton');
 const searchInput = document.getElementById('searchInput');
 const resultsDiv = document.getElementById('results');
 
-searchButton.addEventListener('click', async () => {
+searchButton.addEventListener('click', async (e) => {
+    e.preventDefault(); // Evita la acción por defecto de enviar el formulario
     const query = searchInput.value;
     if (query) {
         const searchResults = await searchMovies(query);
@@ -15,8 +16,9 @@ searchButton.addEventListener('click', async () => {
 });
 
 // Además de ejecutar la función con el botón buscar, se agrega la misma función a la tecla ENTER una vez haya un texto escrito
-searchInput.addEventListener('keydown', async (event) => {
-    if (event.key === 'Enter') {
+searchInput.addEventListener('keydown', async (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault(); 
         const query = searchInput.value;
         if (query) {
             const searchResults = await searchMovies(query);
